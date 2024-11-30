@@ -1,38 +1,358 @@
-.App {
+/* General Styles */
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+/* Header Section */
+.header {
+  background: url("../src/assets/WhatsApp\ Image\ 2024-11-28\ at\ 12.55.18\ AM.jpeg")
+    no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  height: 2000px; /* Adjusted height for better scaling */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  position: relative; /* To position the overlay */
+  z-index: 1; /* Ensure header content is above the overlay */
+}
+
+.header::before {
+  content: ""; /* Required for pseudo-element */
+  position: absolute; /* Cover the entire .header */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Black overlay with low opacity */
+  z-index: -1; /* Place the overlay behind the content */
+}
+
+/* Navbar Styles */
+.navbar {
+  position: absolute; /* Make it absolutely positioned */
+  top: 20px; /* Align it to the top */
+  right: 20px; /* Align it to the right */
+  z-index: 1000; /* Ensure it stays above other elements */
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Increase space between the words */
+}
+
+.logo {
+  position: absolute; /* Keep it positioned at the top-left */
+  top: -32px; /* Adjust the spacing from the top */
+  left: 20px; /* Adjust the spacing from the left */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.logo img {
+  height: 150px; /* Increase height to make it larger */
+  width: auto; /* Maintain the aspect ratio */
+  display: block; /* Ensure the logo is rendered properly */
+}
+.navbar ul {
+  display: flex; /* Display items in a row */
+  list-style: none; /* Remove default bullet points */
+  margin: 0; /* Reset default margin */
+  padding: 0; /* Reset default padding */
+  gap: 30px; /* Increased gap for more space between links */
+}
+
+.navbar ul li {
+  margin-right: 30px; /* Add spacing between the links */
+}
+
+.navbar ul li:last-child {
+  margin-right: 0; /* Ensure no extra margin on the last item */
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #e60000; /* Hover color */
+}
+
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between the icons */
+}
+
+.navbar-icons .icon {
+  color: white;
+  font-size: 1.2rem; /* Icon size */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-icons .icon:hover {
+  color: #e60000; /* Hover color */
+}
+
+/* Hero Section */
+.hero {
+  position: absolute; /* Position relative to the header */
+  left: 20px; /* Align content to the left */
+  top: 40%; /* Vertically center the content */
+  transform: translateY(-50%); /* Adjust for perfect centering */
+  text-align: left; /* Align text to the left */
+  z-index: 3; /* Ensure it is above the overlay */
+  padding: 40px;
+}
+.hero h1 {
+  font-size: 3rem; /* Adjusted font size for better emphasis */
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for readability */
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.hero-buttons button {
+  padding: 15px 30px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem; /* Slightly larger for emphasis */
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-radius: 120px;
+}
+
+.hero-buttons button:hover {
+  background-color: darkred;
+}
+
+/* Most Sellers & Sales Sections */
+.most-sellers,
+.sales {
+  padding: 80px 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.most-sellers h2,
+.sales h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #e60000;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.item-card {
+  position: relative; /* Enable positioning for child elements */
+  background-color: #e7e7e7;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.item-card img {
+  width: 100%; /* Ensures the image fits the container width */
+  height: auto; /* Maintains aspect ratio */
+  object-fit: contain; /* Ensures the entire T-shirt fits without cropping */
+  display: block;
+  margin: 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.item-card p {
+  margin: 10px 0;
+}
+
+.item-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Sale Badge */
+.item-card p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.item-card p .old-price {
+  text-decoration: line-through; /* Strike-through for old price */
+  color: #999; /* Lighter color for old price */
+  margin-right: 10px; /* Add space between old and new price */
+}
+
+.item-card p .new-price {
+  color: #e60000; /* Highlight the new price in red */
+  font-weight: bold;
+}
+
+.sale-badge {
+  position: absolute; /* Position it within the product box */
+  top: 10px; /* Distance from the top */
+  right: 10px; /* Distance from the right */
+  background: #e60000; /* Red background color */
+  color: white; /* White text */
+  font-size: 0.8rem; /* Adjust font size */
+  font-weight: bold; /* Bold text */
+  padding: 10px 15px; /* Adjust padding for circular shape */
+  border-radius: 50%; /* Make it circular */
+  text-align: center; /* Center the text inside the badge */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for a subtle 3D effect */
+  z-index: 1; /* Ensure it appears above other elements */
+  transform: rotate(-15deg); /* Rotate the badge slightly for style */
+}
+/* Footer Section */
+.footer {
+  background-color: #fff; /* White background */
+  padding: 20px 40px;
+  border-top: 1px solid #ddd; /* Light border at the top */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* Space out the three sections */
+  align-items: center; /* Align items vertically */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  flex: 1; /* Ensure it takes up space on the left */
+  text-align: left; /* Align text to the far left */
+  margin-left: 0; /* Remove any extra margins */
+}
+
+.footer-brand h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000; /* Black text color */
+}
+
+.footer-social {
+  flex: 1; /* Center the social icons */
+  text-align: center;
+}
+
+.social-icon {
+  margin: 0 10px; /* Space between icons */
+  color: #000; /* Black icons */
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #e60000; /* Red hover effect */
+}
+
+.footer-links {
+  flex: 1; /* Align links to the right */
+  text-align: right; /* Align links to the far right */
+}
+
+.footer-links a {
+  margin-left: 20px; /* Space between links */
+  font-size: 0.9rem;
+  color: #000; /* Black text color */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #e60000; /* Red hover effect */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .item-grid {
+    grid-template-columns: 1fr;
   }
 }
+
+.categories {
+  padding: 40px 20px; /* Add padding to the section */
+  background-color: #f9f9f9; /* Light background color */
+  text-align: center;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  gap: 20px; /* Space between columns */
+  max-width: 1200px;
+  margin: 0 auto; /* Center the grid */
+}
+
+.category {
+  text-align: left;
+}
+
+.category h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category ul li {
+  font-size: 0.9rem;
+  margin: 5px 0;
+  color: #333;
+}
+

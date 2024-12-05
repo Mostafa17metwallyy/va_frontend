@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { FaTrash, FaPlus } from "react-icons/fa"; // Import Trash and Plus icons
 import "./CartPage.css";
 
 const CartPage = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, removeFromCart, addToCart } = useContext(CartContext);
 
   const calculateSubtotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -28,11 +29,12 @@ const CartPage = () => {
                 <th>Size</th>
                 <th>Quantity</th>
                 <th>Total</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {cart.map((item) => (
-                <tr key={item.id}>
+              {cart.map((item, index) => (
+                <tr key={`${item.id}-${item.size}-${index}`}>
                   <td className="product-info">
                     <img src={item.image} alt={item.name} />
                     <span>{item.name}</span>
@@ -40,6 +42,22 @@ const CartPage = () => {
                   <td>{item.size || "-"}</td>
                   <td>{item.quantity}</td>
                   <td>{item.price * item.quantity} EGP</td>
+                  <td className="action-buttons">
+                    <button
+                      className="action-button"
+                      onClick={() =>
+                        addToCart({ id: item.id, size: item.size, price: item.price })
+                      }
+                    >
+                      <FaPlus />
+                    </button>
+                    <button
+                      className="action-button"
+                      onClick={() => removeFromCart(item.id, item.size)}
+                    >
+                      <FaTrash />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

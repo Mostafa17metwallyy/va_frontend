@@ -8,7 +8,9 @@
 h1 {
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
 }
 
 .cart-container {
@@ -18,19 +20,21 @@ h1 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 1200px;
   margin: 0 auto;
+  overflow-x: auto; /* Ensures responsiveness for smaller screens */
 }
 
 .cart-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 2rem;
+  table-layout: fixed; /* Ensures consistent column widths */
 }
 
 .cart-table th,
 .cart-table td {
-  text-align: left;
   padding: 1rem;
   border-bottom: 1px solid #ddd;
+  vertical-align: middle;
 }
 
 .cart-table th {
@@ -38,11 +42,22 @@ h1 {
   text-transform: uppercase;
   font-size: 1rem;
   color: #333;
+  text-align: center;
 }
 
 .cart-table td {
-  vertical-align: middle;
   font-size: 0.9rem;
+  text-align: center;
+  word-wrap: break-word; /* Ensures content doesn't overflow */
+}
+
+.cart-table td:first-child,
+.cart-table th:first-child {
+  text-align: left; /* Align product info column to the left */
+}
+
+.cart-table tr:last-child td {
+  border-bottom: none; /* Remove bottom border for the last row */
 }
 
 .product-info {
@@ -64,21 +79,29 @@ h1 {
   align-items: flex-end;
   gap: 1rem;
   background: #f5f5f5;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .summary-item {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   font-size: 1rem;
+}
+
+.summary-item span {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
 }
 
 .summary-item.total {
   font-weight: bold;
   font-size: 1.2rem;
+  color: #000;
 }
 
 .checkout-button {
@@ -91,8 +114,100 @@ h1 {
   cursor: pointer;
   text-transform: uppercase;
   transition: background 0.3s ease;
+  margin-top: 1rem;
 }
 
 .checkout-button:hover {
   background-color: #333;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: #e53935;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.delete-button:hover {
+  color: #ff0000;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center; /* Ensures buttons align vertically with row content */
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.action-button:hover {
+  color: #e53935;
+}
+
+/* Table Alignment Fix */
+.cart-table td:first-child {
+  text-align: left;
+}
+
+.cart-table th:first-child {
+  text-align: left;
+}
+
+/* Add subtle hover effect for rows */
+.cart-table tr:hover {
+  background-color: #f9f9f9; /* Subtle background change on hover */
+}
+
+/* Adjust action buttons alignment */
+.cart-table td .action-buttons {
+  margin-top: 0; /* Aligns action buttons with row data */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 1rem;
+  }
+
+  .cart-table th,
+  .cart-table td {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+
+  .summary-item {
+    max-width: 300px;
+  }
+
+  .checkout-button {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-table th,
+  .cart-table td {
+    font-size: 0.7rem;
+    padding: 0.3rem;
+  }
+
+  .summary-item {
+    max-width: 100%;
+  }
+
+  .checkout-button {
+    width: 100%; /* Full-width button on small screens */
+    text-align: center;
+  }
 }

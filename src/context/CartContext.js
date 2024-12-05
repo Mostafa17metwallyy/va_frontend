@@ -9,25 +9,37 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product) => {
     setCart((prevCart) => {
-      const existingProduct = prevCart.find((item) => item.id === product.id);
-      if (existingProduct) {
-        // Update quantity if the product is already in the cart
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
+      const existingProductIndex = prevCart.findIndex(
+        (item) => item.id === product.id && item.size === product.size
+      );
+
+      if (existingProductIndex >= 0) {
+        const updatedCart = [...prevCart];
+        updatedCart[existingProductIndex].quantity += product.quantity || 1;
+        return updatedCart;
       } else {
-        // Add new product to the cart
-        return [...prevCart, { ...product, quantity: 1 }];
+        return [...prevCart, { ...product, quantity: product.quantity || 1 }];
       }
+    });
+  };
+
+  const removeFromCart = (id, size) => {
+    setCart((prevCart) => {
+      return prevCart
+        .map((item) => {
+          if (item.id === id && item.size === size) {
+            return { ...item, quantity: item.quantity - 1 };
+          }
+          return item;
+        })
+        .filter((item) => item.quantity > 0); // Remove the item if quantity reaches 0
     });
   };
 
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, cartItemCount }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, cartItemCount }}>
       {children}
     </CartContext.Provider>
   );

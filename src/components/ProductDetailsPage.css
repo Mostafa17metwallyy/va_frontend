@@ -142,3 +142,22 @@
 .add-to-cart-button:hover {
   background-color: #333;
 }
+.product-price {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space between old and new prices */
+  margin-bottom: 1.5rem;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #888; /* Subtle gray color for old price */
+  font-size: 1.2rem; /* Slightly smaller than new price */
+}
+
+.new-price {
+  font-weight: bold;
+  color: #e53935; /* Highlight the new price in red */
+  font-size: 1.5rem; /* Larger size for emphasis */
+}

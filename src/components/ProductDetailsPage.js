@@ -47,8 +47,16 @@ const ProductDetailsPage = () => {
           <h1 className="product-title">{product.name}</h1>
           <h2 className="product-description-title">DESCRIPTION</h2>
           <p className="product-description">{product.description}</p>
-          <p className="product-price">{product.price} EGP</p>
 
+          {/* Conditionally Render Prices */}
+          {product.oldPrice ? (
+            <p className="product-price">
+              <span className="old-price">{product.oldPrice} EGP</span>{" "}
+              <span className="new-price">{product.price} EGP</span>
+            </p>
+          ) : (
+            <p className="product-price">{product.price} EGP</p>
+          )}
 
           {/* Size Selection */}
           <div className="product-options">

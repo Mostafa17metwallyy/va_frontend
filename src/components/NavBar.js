@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaSearch, FaUser } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
-import logo from "../assets/logo-png-full.png"; // Replace with your actual logo path
-import "./Navbar.css"; // Ensure you have the appropriate styles
+import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
+import { CartContext } from "../context/CartContext"; // Import the CartContext
+import logo from "../assets/logo-png-full.png"; // Replace with your logo path
+import "./Navbar.css";
 
 const Navbar = () => {
-  const location = useLocation(); // Get the current route
+  const location = useLocation();
+  const { cartItemCount } = useContext(CartContext); // Access cart item count
 
-  // Check if the current route is the home page
   const isHomePage = location.pathname === "/";
 
   return (
@@ -31,7 +31,10 @@ const Navbar = () => {
 
         {/* Icons */}
         <div className="navbar-icons">
-          <Link to="/cart" className="icon"><FaShoppingCart /></Link>
+          <Link to="/cart" className="icon cart-icon">
+            <FaShoppingCart />
+            {cartItemCount > 0 && <span className="cart-count">{cartItemCount}</span>}
+          </Link>
           <Link to="/search" className="icon"><FaSearch /></Link>
           <Link to="/profile" className="icon"><FaUser /></Link>
         </div>

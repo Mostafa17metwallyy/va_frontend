@@ -12,7 +12,8 @@ import "./App.css";
 import Navbar from "./components/NavBar";
 import ProductDetailsPage from "./components/ProductDetailsPage";
 import CartPage from "./components/CartPage";
-import { CartProvider } from "./context/CartContext"; // Ensure correct path
+import { CartProvider } from "./context/CartContext"; 
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (

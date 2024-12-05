@@ -5,8 +5,8 @@ import Sales from "./components/Sales";
 import Footer from "./components/Footer";
 import Categories from "./components/Categories";
 import About from "./components/About";
-// import Contact from "./components/Contact";
-// import Products from "./components/Products";
+import Contact from "./components/ContactPage";
+import Products from "./components/ProductPage";
 import Header from "./components/Header";
 import "./App.css";
 import Navbar from "./components/NavBar";
@@ -20,8 +20,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/about" element={<About />} />
-          {/* <Route path="/products" element={<Products />} />
-          <Route path="/contact" element={<Contact />} /> */}
+          <Route path="/products" element={<Products />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
       </div>

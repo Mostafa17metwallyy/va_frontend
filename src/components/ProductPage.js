@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProductPage.css"; // Add appropriate styling
 import frontTShirt from "../assets/front-t-shirt-removebg-preview.png";
 
-
 const ProductPage = () => {
+  const navigate = useNavigate();
+
   // Sample product data
   const products = [
     { id: 1, name: "T-Shirt 1", color: "Black", price: 600, image: frontTShirt },
@@ -17,11 +19,15 @@ const ProductPage = () => {
       {/* Product Grid */}
       <section className="product-grid">
         {products.map((product) => (
-          <div key={product.id} className="product-card">
+          <div
+            key={product.id}
+            className="product-card"
+            onClick={() => navigate(`/product/${product.id}`, { state: product })}
+          >
             <img src={product.image} alt={product.name} />
             <h3>{product.name}</h3>
             <p>{product.color}</p>
-            <p>₱{product.price.toFixed(2)}</p>
+            <p>${product.price.toFixed(2)}</p>
           </div>
         ))}
       </section>
@@ -34,7 +40,6 @@ const ProductPage = () => {
         <button className="page-button">3</button>
         <button className="page-button">&gt;</button>
       </div>
-
     </div>
   );
 };

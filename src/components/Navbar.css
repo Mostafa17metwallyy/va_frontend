@@ -1,0 +1,71 @@
+/* General Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  width: 100%;
+  margin-bottom: 1rem; /* Add margin to create space below the navbar */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-logo img {
+  height: 40px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Icon Styles */
+.navbar-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-icons .icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* Home Page Navbar (White) */
+.navbar-home {
+  background-color: transparent;
+  color: white;
+}
+
+.navbar-home .navbar-links li a,
+.navbar-home .navbar-icons .icon {
+  color: white;
+}
+
+/* Other Pages Navbar (Black and Styled Like Image) */
+.navbar-other {
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-other .navbar-links li a,
+.navbar-other .navbar-icons .icon {
+  color: black;
+}

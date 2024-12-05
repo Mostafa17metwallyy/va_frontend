@@ -5,7 +5,7 @@ const CartPage = () => {
   const { cart } = useContext(CartContext);
 
   return (
-    <div>
+    <div className="cart-page">
       <h1>Your Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty!</p>
@@ -13,7 +13,9 @@ const CartPage = () => {
         <ul>
           {cart.map((item) => (
             <li key={item.id}>
-              {item.name} - {item.quantity} x {item.price} EGP
+              <h2>{item.name}</h2>
+              <p>Price: {item.price} EGP</p>
+              <p>Quantity: {item.quantity}</p>
             </li>
           ))}
         </ul>

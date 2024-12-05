@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { CartContext } from "../context/CartContext"; // Ensure correct path
+import { CartContext } from "../context/CartContext";
 import "./ProductDetailsPage.css";
 
 const ProductDetailsPage = () => {
-  const { addToCart } = useContext(CartContext); // Consume CartContext
+  const { addToCart } = useContext(CartContext);
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state;
@@ -15,7 +15,7 @@ const ProductDetailsPage = () => {
 
   const handleAddToCart = () => {
     addToCart(product);
-    alert("Product added to cart!");
+    alert(`${product.name} has been added to your cart!`);
   };
 
   return (
@@ -29,6 +29,8 @@ const ProductDetailsPage = () => {
         </div>
         <div className="product-right-section">
           <h1>{product.name}</h1>
+          <h2 className="product-description-title">Description</h2>
+          <p className="product-description">{product.description}</p>
           <p className="product-price">{product.price} EGP</p>
           <button onClick={handleAddToCart} className="add-to-cart-button">
             Add to Cart
